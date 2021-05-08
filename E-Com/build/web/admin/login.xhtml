@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+>
+
+<h:head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width initial-scale=1.0"/>
+    <title> Login</title>
+    <!-- GLOBAL MAINLY STYLES-->
+    <link href="./assets/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./assets/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="./assets/vendors/themify-icons/css/themify-icons.css" rel="stylesheet" />
+    <!-- THEME STYLES-->
+    <link href="assets/css/main.css" rel="stylesheet" />
+    <!-- PAGE LEVEL STYLES-->
+    <link href="./assets/css/pages/auth-light.css" rel="stylesheet" />
+</h:head>
+
+<h:body class="bg-silver-300">
+    <div class="content">
+        <div class="brand">
+            <a class="link" href="login.xhtml">Smart Profiling</a>
+        </div>
+        <h:form id="login-form" >
+            <h2 class="login-title">Log in</h2>
+            <div class="form-group">
+                <div class="input-group-icon right">
+                    <div class="input-icon"><i class="fa fa-user"></i></div>
+                    <h:inputText value="#{loginusecase.user.username}" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group-icon right">
+                    <div class="input-icon"><i class="fa fa-lock font-16"></i></div>
+                    <h:inputSecret value="#{loginusecase.user.password}" class="form-control"  />
+                </div>
+            </div>
+            <div class="form-group d-flex justify-content-between">
+                <label class="ui-checkbox ui-checkbox-info">
+                    <input type="checkbox"/>
+                    <span class="input-span"></span>Remember me</label>
+                <a href="forgot_password.html">Forgot password?</a>
+            </div>
+            <div class="form-group">
+                <h:commandButton class="btn btn-info btn-block" value="Login" action="#{loginusecase.login()}"></h:commandButton>
+            </div>
+            <div class="social-auth-hr">
+                <span>Or Sign Up As</span>
+            </div>
+            
+            <div class="text-center">
+                <a class="color-orange"  href="district-manager-signup.xhtml"> <b style="font-family: cambria;text-transform:uppercase;font-size: 13px;">Manager</b></a>
+               &#160; &#160; &#160;&#160;&#160;&#160;&#160;
+                <a class="color-ebony"  href="police-station-signup.xhtml"> <b style="font-family: cambria;text-transform:uppercase;font-size: 13px;">Station </b></a>
+            </div>
+        </h:form>
+    </div>
+    <!-- BEGIN PAGA BACKDROPS-->
+    <div class="sidenav-backdrop backdrop"></div>
+    <div class="preloader-backdrop">
+        <div class="page-preloader">Loading</div>
+    </div>
+    <!-- END PAGA BACKDROPS-->
+    <!-- CORE PLUGINS -->
+    <script src="./assets/vendors/jquery/dist/jquery.min.js" type="text/javascript"></script>
+    <script src="./assets/vendors/popper.js/dist/umd/popper.min.js" type="text/javascript"></script>
+    <script src="./assets/vendors/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL PLUGINS -->
+    <script src="./assets/vendors/jquery-validation/dist/jquery.validate.min.js" type="text/javascript"></script>
+    <!-- CORE SCRIPTS-->
+    <script src="assets/js/app.js" type="text/javascript"></script>
+    <!-- PAGE LEVEL SCRIPTS-->
+    <script type="text/javascript">
+        $(function() {
+            $('#login-form').validate({
+                errorClass: "help-block",
+                rules: {
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    password: {
+                        required: true
+                    }
+                },
+                highlight: function(e) {
+                    $(e).closest(".form-group").addClass("has-error")
+                },
+                unhighlight: function(e) {
+                    $(e).closest(".form-group").removeClass("has-error")
+                },
+            });
+        });
+    </script>
+</h:body>
+
+</html>
